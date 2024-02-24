@@ -40,4 +40,9 @@ public class PeliculaService implements IPeliculaService {
                 })
                 .orElseGet(() -> false);
     }
+
+    @Override
+    public Optional<Pelicula> findById(Integer id) {
+        return repository.findById(id);
+    }
 }

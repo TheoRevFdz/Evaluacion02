@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Mi Aplicación</a>
+    <a class="navbar-brand" href="#">Evaluación 02</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,51 +26,74 @@
         </ul>
     </div>
 </nav>
+
 <div class="container mt-5">
-    <h1 class="mt-5">Usuarios</h1>
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <form action="/users/register" method="get">
-                <button type="submit" class="btn btn-primary">Registrar Pelicula</button>
-            </form>
-        </div>
-    </div>
     <div class="row">
-        <div class="col-md-1">
-            <h5>Id</h5>
+        <div class="col-6 container">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <h1 class="mt-5">Productos</h1>
+                </div>
+            </div>
         </div>
-        <div class="col-md-5">
-            <h5>Nombres - Apellidos</h5>
-        </div>
-        <div class="col-md-4">
-            <h5>Correo</h5>
-        </div>
-        <div class="col-md-2">
-            <h5>Acciones</h5>
+        <div class="col-6">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <form action="/peliculas/register" method="get">
+                        <button type="submit" class="btn btn-primary">Registrar Pelicula</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="list-group">
         <!-- Iterar sobre la lista de personas y mostrar cada una -->
-        <div th:each="usuario : ${users}" class="list-group-item">
-            <div class="row">
-                <div class="col-md-1" th:text="${usuario.id}"></div>
-                <div class="col-md-5" th:text="${usuario.name}"></div>
-                <div class="col-md-4" th:text="${usuario.email}"></div>
-                <div class="col-md-1">
+        <div class="row">
+            <div class="col-md-1">
+                <h5>Id</h5>
+            </div>
+            <div class="col-md-2">
+                <h5>Nombre</h5>
+            </div>
+            <div class="col-md-2">
+                <h5>Director</h5>
+            </div>
+            <div class="col-md-2">
+                <h5>Fecha Estreno</h5>
+            </div>
+            <div class="col-md-2">
+                <h5>Genero</h5>
+            </div>
+            <div class="col-md-1">
+                <h5>Acciones</h5>
+            </div>
+        </div>
+        <div class="list-group">
+            <!-- Iterar sobre la lista de personas y mostrar cada una -->
+            <div th:each="pelicula : ${peliculas}" class="list-group-item">
+                <div class="row">
+                    <div class="col-md-1" th:text="${pelicula.getIdPelicula}"></div>
+                    <div class="col-md-2" th:text="${pelicula.getNombre}"></div>
+                    <div class="col-md-2" th:text="${pelicula.getDirector}"></div>
+                    <div class="col-md-2" th:text="${pelicula.getFechaStreno}"></div>
+                    <div class="col-md-2" th:text="${pelicula.getGenero().getNombre}"></div>
+                    <div class="col-md-1">
 
-                    <a th:href="@{'/users/edit/' + ${usuario.id} }" class="btn btn-warning">Editar</a>
+                        <a th:href="@{'/peliculas/edit/' + ${pelicula.getIdPelicula} }" class="btn btn-warning">Editar</a>
+
+                    </div>
+
+                    <div class="col-md-1">
+
+                        <a th:href="@{'/peliculas/delete/' + ${pelicula.getIdPelicula} }"
+                           onclick="return confirm('¿Está seguro de eliminar?');"
+                           class="btn btn-danger">Eliminar</a>
+
+                    </div>
+
 
                 </div>
-
-                <div class="col-md-1">
-
-                    <a th:href="@{'/users/delete/' + ${usuario.id} }"
-                       onclick="return confirm('¿Está seguro de eliminar?');"
-                       class="btn btn-danger">Eliminar</a>
-
-                </div>
-
-
             </div>
         </div>
     </div>
